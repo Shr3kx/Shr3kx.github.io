@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-
+import { Safari } from "@/components/ui/safari";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio OS | Senior Engineer",
+  title: "Portfolio OS | Shrey Kuvera",
   description: "Portfolio OS",
 };
 

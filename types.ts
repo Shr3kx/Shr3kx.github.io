@@ -1,5 +1,16 @@
-
-export type WindowId = 'hero' | 'about' | 'projects' | 'resume' | 'contact' | 'terminal' | 'stack' | 'pricing' | 'customers' | 'demo' | 'docs' | 'signup';
+export type WindowId =
+  | "hero"
+  | "about"
+  | "projects"
+  | "resume"
+  | "contact"
+  | "terminal"
+  | "stack"
+  | "pricing"
+  | "customers"
+  | "demo"
+  | "docs"
+  | "signup";
 
 export interface WindowState {
   id: WindowId;
@@ -17,13 +28,22 @@ export interface Project {
   description: string;
   tags: string[];
   image: string;
+  video?: string;
   link: string;
 }
 
 export interface DesktopIconDef {
   id: WindowId;
   label: string;
-  iconType: 'file' | 'folder' | 'app' | 'media' | 'mail' | 'chat' | 'compass' | 'calc';
+  iconType:
+    | "file"
+    | "folder"
+    | "app"
+    | "media"
+    | "mail"
+    | "chat"
+    | "compass"
+    | "calc";
 }
 
 // Added NavItem interface to support navigation components

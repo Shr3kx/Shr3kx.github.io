@@ -1,6 +1,6 @@
-
-import React from 'react';
-import { DesktopIconDef } from '../types';
+import React from "react";
+import { DesktopIconDef } from "../types";
+import { FileText, Code2, Video, Mail } from "lucide-react";
 
 interface DesktopIconProps {
   icon: DesktopIconDef;
@@ -9,70 +9,144 @@ interface DesktopIconProps {
 
 const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, onClick }) => {
   const renderIcon = () => {
+    const iconSize = 48;
+    const iconClassName = "text-zinc-900";
+
+    // Per-window custom icons
+    if (icon.id === "hero") {
+      // Summary
+      return (
+        <img
+          src="/ticket.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "projects") {
+      // Projects
+      return (
+        <img
+          src="/attached-file.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "terminal") {
+      // Terminal
+      return (
+        <img
+          src="/command-line.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "signup") {
+      // GitHub
+      return (
+        <img
+          src="/github1.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "demo") {
+      // project_map.mov
+      return (
+        <img
+          src="/work-in-progress.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "about") {
+      // Education
+      return (
+        <img
+          src="/graduation.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "resume") {
+      // Experience
+      return (
+        <img
+          src="/businessman.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "stack") {
+      // Stack / skills
+      return (
+        <img
+          src="/skills.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    if (icon.id === "contact") {
+      // Contact
+      return (
+        <img
+          src="/link.png"
+          alt={icon.label}
+          width={iconSize}
+          height={iconSize}
+          className="object-contain"
+        />
+      );
+    }
+
+    // Fallbacks by icon type
     switch (icon.iconType) {
-      case 'file':
-        return (
-          <div className="w-10 h-12 bg-white border-2 border-zinc-800 rounded-sm relative shadow-sm">
-            <div className="absolute top-0 right-0 w-3 h-3 bg-zinc-200 border-l-2 border-b-2 border-zinc-800" />
-            <div className="mt-4 px-1 space-y-1">
-              <div className="h-0.5 bg-zinc-300 w-full" />
-              <div className="h-0.5 bg-zinc-300 w-3/4" />
-              <div className="h-0.5 bg-zinc-300 w-full" />
-            </div>
-          </div>
-        );
-      case 'folder':
-        return (
-          <div className="w-12 h-10 bg-[#f4d48c] border-2 border-zinc-800 rounded-sm relative shadow-sm">
-            <div className="absolute -top-1.5 left-0 w-5 h-2 bg-[#f4d48c] border-2 border-zinc-800 border-b-0 rounded-t-sm" />
-          </div>
-        );
-      case 'calc':
-        return (
-          <div className="w-10 h-12 bg-zinc-100 border-2 border-zinc-800 rounded-md p-1.5 grid grid-cols-2 gap-1 shadow-sm">
-            <div className="col-span-2 h-2 bg-zinc-800 rounded-sm" />
-            <div className="h-2 bg-zinc-300" />
-            <div className="h-2 bg-zinc-300" />
-            <div className="h-2 bg-zinc-300" />
-            <div className="h-2 bg-zinc-300" />
-          </div>
-        );
-      case 'media':
-        return (
-          <div className="w-12 h-10 bg-black border-2 border-zinc-800 rounded-sm flex items-center justify-center shadow-sm relative overflow-hidden">
-             <div className="absolute inset-0 opacity-40 bg-[url('https://picsum.photos/seed/demo/100/100')]" />
-             <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent z-10" />
-          </div>
-        );
-      case 'mail':
-        return (
-          <div className="w-12 h-8 bg-zinc-50 border-2 border-zinc-800 rounded-sm relative shadow-sm">
-            <div className="absolute inset-0 border-t-2 border-zinc-800 mt-1" style={{ clipPath: 'polygon(0 0, 50% 50%, 100% 0)' }} />
-          </div>
-        );
-      case 'chat':
-        return (
-          <div className="w-12 h-10 flex flex-col items-center">
-            <div className="w-10 h-8 bg-white border-2 border-zinc-800 rounded-lg relative shadow-sm">
-               <div className="absolute -bottom-1.5 left-2 w-3 h-3 bg-white border-r-2 border-b-2 border-zinc-800 rotate-45" />
-            </div>
-          </div>
-        );
-      case 'compass':
-        return (
-          <div className="w-10 h-10 rounded-full bg-white border-2 border-zinc-800 flex items-center justify-center shadow-sm relative">
-             <div className="w-1 h-8 bg-red-500 rounded-full rotate-45 absolute" />
-             <div className="w-1 h-8 bg-zinc-300 rounded-full -rotate-[135deg] absolute origin-center" />
-             <div className="w-2 h-2 rounded-full bg-zinc-800 z-10" />
-          </div>
-        );
+      case "file":
+        return <FileText size={iconSize} className={iconClassName} />;
+      case "calc":
+        return <Code2 size={iconSize} className={iconClassName} />;
+      case "media":
+        return <Video size={iconSize} className={iconClassName} />;
+      case "mail":
+        return <Mail size={iconSize} className={iconClassName} />;
       default:
-        return <div className="w-10 h-10 bg-zinc-400" />;
+        return <FileText size={iconSize} className={iconClassName} />;
     }
   };
 
   return (
-    <div 
+    <div
       className="flex flex-col items-center gap-1.5 cursor-pointer group w-24 py-3"
       onClick={onClick}
     >

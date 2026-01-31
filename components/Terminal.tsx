@@ -23,10 +23,11 @@ const Terminal: React.FC = () => {
       response =
         "React.js, Next.js, TypeScript, JavaScript, Tailwind CSS, Node.js, Express.js, MongoDB.";
     } else if (cmd === "github") {
-      response = "Opening github.com/shreykuvera...";
+      response = "Opening github.com/Shr3kx...";
       type = "info";
+      window.open("https://github.com/Shr3kx", "_blank");
     } else if (cmd === "contact") {
-      response = "shrey.kuvera@gmail.com | 9981175111";
+      response = "shrey.kuvera@gmail.com";
     } else if (cmd === "clear") {
       setHistory([]);
       setInput("");

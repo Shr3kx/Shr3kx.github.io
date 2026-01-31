@@ -10,12 +10,12 @@ import Terminal from "@/components/Terminal";
 import DesktopIcon from "@/components/DesktopIcon";
 import { WindowId, WindowState } from "@/types";
 import { INITIAL_WINDOWS, DESKTOP_ICONS } from "@/constants";
-
+import { Safari } from "@/components/ui/safari";
 const NOW_BUILDING = {
-  title: "Portfolio OS",
-  description: "Building an interactive portfolio experience",
+  title: "CodePocket",
+  description: "Building a modern code snippet manager for developers",
   link: "#",
-  progress: 65,
+  progress: 30,
 };
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
     (
       Object.entries(INITIAL_WINDOWS) as [
         WindowId,
-        (typeof INITIAL_WINDOWS)["hero"]
+        (typeof INITIAL_WINDOWS)["hero"],
       ][]
     ).forEach(([id, config]) => {
       initialState[id] = {
@@ -46,11 +46,11 @@ export default function Home() {
     return initialState;
   });
 
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
   const [topZIndex, setTopZIndex] = useState(200);
   const [isMounted, setIsMounted] = useState(false);
   const [showNowBuilding, setShowNowBuilding] = useState(true);
-
-  // Randomize positions only on client side after mount
   useEffect(() => {
     setIsMounted(true);
     setWindows(prev => {
@@ -83,7 +83,7 @@ export default function Home() {
         };
       });
     },
-    [topZIndex]
+    [topZIndex],
   );
 
   const closeWindow = useCallback((id: WindowId) => {
@@ -101,7 +101,7 @@ export default function Home() {
       }
       focusWindow(id);
     },
-    [focusWindow]
+    [focusWindow],
   );
 
   const toggleNowBuilding = useCallback(() => {
@@ -147,8 +147,13 @@ export default function Home() {
                   Active
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <ArrowUpRight className="w-3 h-3 text-zinc-600" />
+              <div className="flex items-center gap-2 cursor-pointer hover:text-amber-500 transition-colors">
+                <ArrowUpRight
+                  className="w-3 h-3 text-zinc-600"
+                  onClick={() => {
+                    window.open("https://codepocket.vercel.app/", "_blank");
+                  }}
+                />
                 <button
                   onClick={() => setShowNowBuilding(false)}
                   className="w-4 h-4 rounded-full bg-zinc-200 hover:bg-zinc-300 transition-colors flex items-center justify-center group/close"
@@ -162,7 +167,12 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-sm font-bold leading-tight mb-1 transition-colors duration-300 text-zinc-900">
+              <h4
+                className="text-sm font-bold leading-tight mb-1 transition-colors duration-300 text-zinc-900 hover:text-amber-500 cursor-pointer"
+                onClick={() => {
+                  window.open("https://codepocket.vercel.app/", "_blank");
+                }}
+              >
                 {NOW_BUILDING.title}
               </h4>
               <p className="text-xs font-sans italic leading-relaxed transition-colors duration-300 text-zinc-700">
@@ -172,12 +182,15 @@ export default function Home() {
 
             <div className="flex flex-col gap-1 mt-1">
               <div className="h-1.5 w-full bg-zinc-300 rounded-sm overflow-hidden">
-                <div className="h-full bg-zinc-700 w-[65%] rounded-sm relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/20 animate-[shimmer_2s_infinite]"></div>
+                <div
+                  className="h-full bg-zinc-700 rounded-sm relative overflow-hidden"
+                  style={{ width: `${NOW_BUILDING.progress}%` }}
+                >
+                  <div className="absolute inset-0 bg-white/20 animate-[shimmer_2s]"></div>
                 </div>
               </div>
-              <span className="font-mono text-[8px] text-right text-zinc-600">
-                65% Complete
+              <span className="font-mono text-[12px] text-right text-zinc-600">
+                {NOW_BUILDING.progress}% Complete
               </span>
             </div>
           </div>
@@ -205,7 +218,7 @@ export default function Home() {
         >
           <div className="max-w-5xl mx-auto py-6">
             <h2 className="text-4xl font-black text-zinc-900 uppercase tracking-tighter italic mb-8 border-b-4 border-[#f3a033] inline-block">
-              Engineering Portfolio
+              Projects
             </h2>
             <ProjectGrid />
           </div>
@@ -309,12 +322,6 @@ export default function Home() {
                 </span>
                 shrey.kuvera@gmail.com
               </div>
-              <div className="p-4 border-2 border-black rounded-xl bg-zinc-50 font-bold">
-                <span className="text-xs uppercase text-zinc-400 block mb-1">
-                  Phone
-                </span>
-                9981175111
-              </div>
             </div>
             <form
               className="space-y-4"
@@ -405,14 +412,24 @@ export default function Home() {
         >
           <div className="flex flex-col h-full space-y-4">
             <div className="aspect-video w-full bg-black rounded-lg flex items-center justify-center relative group overflow-hidden border-2 border-black">
-              <img
-                src="https://images.unsplash.com/photo-1551288049-bbbda540d3b9?auto=format&fit=crop&q=80&w=800"
+              <video
+                ref={videoRef}
+                src="/projectmap-demo.mp4"
                 className="absolute inset-0 w-full h-full object-cover opacity-50"
-                alt="Demo preview"
+                autoPlay
+                loop
+                muted
+                onPlay={() => setIsVideoPlaying(true)}
+                onPause={() => setIsVideoPlaying(false)}
               />
-              <div className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center z-10 cursor-pointer hover:scale-110 transition-transform">
-                <div className="w-0 h-0 border-t-[20px] border-t-transparent border-l-[30px] border-l-white border-b-[20px] border-b-transparent ml-2" />
-              </div>
+              {!isVideoPlaying && (
+                <div
+                  className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center z-10 cursor-pointer hover:scale-110 transition-transform"
+                  onClick={() => videoRef.current?.play()}
+                >
+                  <div className="w-0 h-0 border-t-[20px] border-t-transparent border-l-[30px] border-l-white border-b-[20px] border-b-transparent ml-2" />
+                </div>
+              )}
               <div className="absolute bottom-4 left-4 font-black text-white uppercase italic text-2xl drop-shadow-lg">
                 ProjectMap Demo
               </div>
