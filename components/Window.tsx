@@ -60,9 +60,9 @@ const Window: React.FC<WindowProps> = ({
 
   return (
     <div
-      className={`absolute transition-opacity duration-200 bg-white backdrop-blur-lg rounded-lg overflow-hidden window-shadow flex flex-col pointer-events-auto ${
-        isDragging ? "opacity-90 select-none" : "opacity-100"
-      }`}
+      className={`absolute transition-opacity duration-200 bg-white backdrop-blur-lg rounded-lg overflow-hidden window-shadow flex flex-col pointer-events-auto
+        max-sm:!fixed max-sm:!left-0 max-sm:!top-14 max-sm:!w-full max-sm:!h-[calc(100svh-3.5rem)] max-sm:!rounded-none
+        ${isDragging ? "opacity-90 select-none" : "opacity-100"}`}
       style={{
         left: pos.x,
         top: pos.y,
@@ -74,7 +74,7 @@ const Window: React.FC<WindowProps> = ({
     >
       {/* Header Bar */}
       <div
-        className="window-header h-10 bg-zinc-800 border-b border-zinc-900 flex items-center justify-between px-4 cursor-grab active:cursor-grabbing shrink-0 text-white relative"
+        className="window-header h-10 bg-zinc-800 border-b border-zinc-900 flex items-center justify-between px-4 sm:cursor-grab sm:active:cursor-grabbing shrink-0 text-white relative"
         onMouseDown={handleMouseDown}
       >
         <div className="flex items-center gap-1.5">
@@ -110,8 +110,10 @@ const Window: React.FC<WindowProps> = ({
 
       {/* Content Area */}
       <div
-        className={`flex-1 overflow-auto no-scrollbar ${
-          window.id === "terminal" ? "bg-transparent p-0" : "bg-white p-6"
+        className={`flex-1 overflow-y-auto no-scrollbar ${
+          window.id === "terminal"
+            ? "bg-transparent p-0"
+            : "bg-white p-4 sm:p-6"
         }`}
       >
         {children}

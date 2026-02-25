@@ -4,7 +4,7 @@ import { PROJECTS } from "../constants";
 const ProjectGrid: React.FC = () => {
   return (
     <div className="space-y-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
         {PROJECTS.map(project => (
           <div
             key={project.id}
@@ -23,7 +23,7 @@ const ProjectGrid: React.FC = () => {
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-10z5 transition-transform duration-500"
                 />
               ) : null}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
@@ -35,8 +35,8 @@ const ProjectGrid: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className="p-6 space-y-4 flex-1 flex flex-col">
-              <h3 className="text-xl font-black text-zinc-900 group-hover:text-yellow-600 transition-colors uppercase tracking-tight">
+            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 flex-1 flex flex-col">
+              <h3 className="text-base sm:text-xl font-black text-zinc-900 group-hover:text-yellow-600 transition-colors uppercase tracking-tight">
                 {project.title}
               </h3>
               <p className="text-zinc-600 text-sm leading-relaxed flex-1">

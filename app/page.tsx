@@ -122,8 +122,19 @@ export default function Home() {
           className="w-full h-full object-contain object-right-bottom transition-opacity duration-1000"
         />
       </div>
-      {/* Desktop Icons */}
-      <div className="absolute top-20 left-8 flex flex-col flex-wrap h-[calc(100vh-140px)] gap-y-2 z-10 animate-desktop">
+      {/* Desktop Icons — original column layout (desktop only) */}
+      <div className="hidden sm:absolute sm:flex sm:top-20 sm:left-8 sm:flex-col sm:flex-wrap sm:h-[calc(100vh-140px)] sm:gap-y-2 sm:z-10 sm:animate-desktop">
+        {DESKTOP_ICONS.map(icon => (
+          <DesktopIcon
+            key={icon.id}
+            icon={icon}
+            onClick={() => openWindow(icon.id)}
+          />
+        ))}
+      </div>
+
+      {/* Desktop Icons — 3-column grid (mobile only) */}
+      <div className="sm:hidden absolute top-16 left-0 right-0 z-10 animate-desktop grid grid-cols-3 justify-items-center">
         {DESKTOP_ICONS.map(icon => (
           <DesktopIcon
             key={icon.id}
@@ -135,7 +146,7 @@ export default function Home() {
 
       {/* Now Building Widget */}
       {showNowBuilding && (
-        <div className="absolute top-24 right-8 z-15 animate-fade-in">
+        <div className="hidden sm:block absolute top-[4.5rem] sm:right-8 z-15 animate-fade-in sm:max-w-xs">
           <div className="border border-zinc-400/60 p-4 flex flex-col gap-3 transition-colors duration-300 bg-white/50 backdrop-blur-sm rounded-lg shadow-sm group">
             <div className="flex justify-between items-center border-b pb-2 border-dashed border-zinc-400/50">
               <div className="flex items-center gap-2">
@@ -216,8 +227,8 @@ export default function Home() {
           onFocus={focusWindow}
           onMinimize={closeWindow}
         >
-          <div className="max-w-5xl mx-auto py-6">
-            <h2 className="text-4xl font-black text-zinc-900 uppercase tracking-tighter italic mb-8 border-b-4 border-[#f3a033] inline-block">
+          <div className="max-w-5xl mx-auto py-3 sm:py-6">
+            <h2 className="text-2xl sm:text-4xl font-black text-zinc-900 uppercase tracking-tighter italic mb-4 sm:mb-8 border-b-4 border-[#f3a033] inline-block">
               Projects
             </h2>
             <ProjectGrid />
@@ -241,13 +252,13 @@ export default function Home() {
           onFocus={focusWindow}
           onMinimize={closeWindow}
         >
-          <div className="space-y-6 max-w-2xl mx-auto py-8">
-            <h2 className="text-4xl font-black text-zinc-900 uppercase italic underline decoration-[#f3a033]">
+          <div className="space-y-4 sm:space-y-6 max-w-2xl mx-auto py-4 sm:py-8">
+            <h2 className="text-2xl sm:text-4xl font-black text-zinc-900 uppercase italic underline decoration-[#f3a033]">
               Education
             </h2>
-            <div className="space-y-8">
-              <div className="p-6 border-2 border-black bg-zinc-50 rounded-xl">
-                <h3 className="text-xl font-bold uppercase">
+            <div className="space-y-4 sm:space-y-8">
+              <div className="p-4 sm:p-6 border-2 border-black bg-zinc-50 rounded-xl">
+                <h3 className="text-base sm:text-xl font-bold uppercase">
                   Bennett University
                 </h3>
                 <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
@@ -255,8 +266,8 @@ export default function Home() {
                 </p>
                 <p className="mt-2 font-bold text-zinc-500">2024 – Present</p>
               </div>
-              <div className="p-6 border-2 border-black bg-white rounded-xl">
-                <h3 className="text-xl font-bold uppercase">
+              <div className="p-4 sm:p-6 border-2 border-black bg-white rounded-xl">
+                <h3 className="text-base sm:text-xl font-bold uppercase">
                   Bennett University
                 </h3>
                 <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
@@ -277,11 +288,11 @@ export default function Home() {
           onFocus={focusWindow}
           onMinimize={closeWindow}
         >
-          <div className="space-y-10 py-6 max-w-2xl mx-auto">
-            <h2 className="text-4xl font-black text-zinc-900 uppercase italic border-b-2 border-black pb-2">
+          <div className="space-y-6 sm:space-y-10 py-3 sm:py-6 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-zinc-900 uppercase italic border-b-2 border-black pb-2">
               Capabilities / Stack
             </h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {[
                 "React.js",
                 "Next.js",
@@ -294,7 +305,7 @@ export default function Home() {
               ].map(skill => (
                 <div
                   key={skill}
-                  className="p-4 border-2 border-black bg-white rounded-xl flex items-center gap-3 font-black uppercase text-sm italic shadow-sm hover:bg-yellow-50 transition-colors"
+                  className="p-3 sm:p-4 border-2 border-black bg-white rounded-xl flex items-center gap-2 sm:gap-3 font-black uppercase text-xs sm:text-sm italic shadow-sm hover:bg-yellow-50 transition-colors"
                 >
                   <div className="w-3 h-3 bg-[#f3a033] rounded-full" />
                   {skill}
@@ -311,8 +322,8 @@ export default function Home() {
           onFocus={focusWindow}
           onMinimize={closeWindow}
         >
-          <div className="space-y-8 py-4">
-            <h2 className="text-4xl font-black text-zinc-900 uppercase italic leading-tight">
+          <div className="space-y-5 sm:space-y-8 py-2 sm:py-4">
+            <h2 className="text-2xl sm:text-4xl font-black text-zinc-900 uppercase italic leading-tight">
               Drop a Line
             </h2>
             <div className="space-y-4">
@@ -359,15 +370,15 @@ export default function Home() {
           onFocus={focusWindow}
           onMinimize={closeWindow}
         >
-          <div className="space-y-8 py-4 max-w-3xl mx-auto">
-            <h2 className="text-4xl font-black text-zinc-900 uppercase italic border-b-4 border-black inline-block">
+          <div className="space-y-5 sm:space-y-8 py-2 sm:py-4 max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-zinc-900 uppercase italic border-b-4 border-black inline-block">
               Experience
             </h2>
 
-            <div className="space-y-12">
-              <div className="relative pl-8 border-l-4 border-[#f3a033]">
+            <div className="space-y-8 sm:space-y-12">
+              <div className="relative pl-5 sm:pl-8 border-l-4 border-[#f3a033]">
                 <div className="absolute -left-[14px] top-0 w-6 h-6 rounded-full bg-black border-4 border-white" />
-                <h3 className="text-2xl font-black uppercase italic">
+                <h3 className="text-xl sm:text-2xl font-black uppercase italic">
                   Excellent Softwares
                 </h3>
                 <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
@@ -410,7 +421,7 @@ export default function Home() {
           onFocus={focusWindow}
           onMinimize={closeWindow}
         >
-          <div className="flex flex-col h-full space-y-4">
+          <div className="flex flex-col h-full space-y-3 sm:space-y-4">
             <div className="aspect-video w-full bg-black rounded-lg flex items-center justify-center relative group overflow-hidden border-2 border-black">
               <video
                 ref={videoRef}
@@ -424,18 +435,18 @@ export default function Home() {
               />
               {!isVideoPlaying && (
                 <div
-                  className="w-20 h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center z-10 cursor-pointer hover:scale-110 transition-transform"
+                  className="w-14 h-14 sm:w-20 sm:h-20 bg-white/20 backdrop-blur rounded-full flex items-center justify-center z-10 cursor-pointer hover:scale-110 transition-transform"
                   onClick={() => videoRef.current?.play()}
                 >
-                  <div className="w-0 h-0 border-t-[20px] border-t-transparent border-l-[30px] border-l-white border-b-[20px] border-b-transparent ml-2" />
+                  <div className="w-0 h-0 border-t-[14px] sm:border-t-[20px] border-t-transparent border-l-[20px] sm:border-l-[30px] border-l-white border-b-[14px] sm:border-b-[20px] border-b-transparent ml-1 sm:ml-2" />
                 </div>
               )}
-              <div className="absolute bottom-4 left-4 font-black text-white uppercase italic text-2xl drop-shadow-lg">
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 font-black text-white uppercase italic text-lg sm:text-2xl drop-shadow-lg">
                 ProjectMap Demo
               </div>
             </div>
-            <div className="p-4 bg-zinc-50 border-2 border-black rounded-xl">
-              <p className="font-bold text-zinc-900 uppercase italic">
+            <div className="p-3 sm:p-4 bg-zinc-50 border-2 border-black rounded-xl">
+              <p className="font-bold text-zinc-900 uppercase italic text-sm sm:text-base">
                 Showcasing: AI-powered roadmap generator and visualization.
               </p>
             </div>
