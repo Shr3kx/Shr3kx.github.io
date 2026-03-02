@@ -1,4 +1,6 @@
 import { DesktopIconDef, Project, WindowId, NavItem } from "./types";
+import { TERMINAL_CONFIG } from "./global.config";
+export { PROJECTS } from "./global.config";
 
 export const DESKTOP_ICONS: DesktopIconDef[] = [
   { id: "hero", label: "summary.mdx", iconType: "file" },
@@ -10,55 +12,6 @@ export const DESKTOP_ICONS: DesktopIconDef[] = [
   { id: "contact", label: "Contact", iconType: "mail" },
   { id: "terminal", label: "Terminal", iconType: "chat" },
   { id: "signup", label: "GitHub ↗", iconType: "compass" },
-];
-
-export const PROJECTS: Project[] = [
-  {
-    id: "socialping",
-    title: "SocialPing",
-    description:
-      "Full-stack social platform with real-time posts, likes, and notifications via Socket.io, backed by JWT auth and optimized MongoDB/Express data handling.",
-    tags: ["MongoDB", "Express", "React", "Node.js", "Socket.io", "JWT"],
-    image: "/socialPing.png",
-    link: "https://social-ping.vercel.app/",
-  },
-  {
-    id: "codepocket",
-    title: "CodePocket",
-    description:
-      "Modern web-based code snippet manager that helps developers save, organize, search, and reuse code efficiently with tags, collections, and fast interactions.",
-    tags: ["Next.js", "TypeScript", "Shadcn", "Supabase", "Gemini GenAI SDK"],
-    image: "/codepocket.png",
-    link: "https://codepocket.vercel.app/",
-  },
-  {
-    id: "projectmap",
-    title: "ProjectMap",
-    description:
-      "AI-powered web app that generates project roadmaps through an interactive chatbot, enabling idea discovery, milestone planning, and visualization with React Flow.",
-    tags: ["Next.js", "TypeScript", "Supabase", "React Flow"],
-    image: "/projectmap.png",
-    video: "/projectmap-demo.mp4",
-    link: "https://projectmapio.vercel.app/",
-  },
-  {
-    id: "ninjasketch",
-    title: "Ninja Sketch",
-    description:
-      "Next.js and Canvas API collaborative whiteboard supporting drawing, text, shapes, export, and a smooth UX.",
-    tags: ["Next.js", "Canvas API", "TypeScript", "TailwindCSS"],
-    image: "/ninjasketch.png",
-    link: "https://ninsketch.vercel.app/",
-  },
-  {
-    id: "scribo",
-    title: "Scribo",
-    description:
-      "Note-taking web app with real-time markdown editing, image uploads, fast sync, persistent storage, and a minimal Notion-inspired UI.",
-    tags: ["Next.js", "TypeScript", "ConvexDB", "Edgestore", "Clerk"],
-    image: "/scribo.png",
-    link: "https://scribo-v1.vercel.app/",
-  },
 ];
 
 export const INITIAL_WINDOWS: Record<
@@ -100,7 +53,7 @@ export const INITIAL_WINDOWS: Record<
     defaultOpen: false,
   },
   terminal: {
-    title: "shrey@portfolio: ~",
+    title: `${TERMINAL_CONFIG.username}@portfolio: ~`,
     size: { width: "700px", height: "400px" },
     defaultOpen: true,
   },

@@ -32,15 +32,16 @@ const Navbar: React.FC<NavbarProps> = ({
       <nav className="fixed top-0 left-0 right-0 h-14 bg-[#e6e4d9] border-b border-zinc-400/30 z-[10000] flex items-center px-4 justify-between select-none">
         <div className="flex items-center gap-3 sm:gap-6">
           <div
-            className="flex flex-col gap-0.5 cursor-pointer hover:opacity-80 transition-opacity"
+            className="flex flex-col gap-0.5 cursor-pointer hover:opacity-80 transition-opacity rounded-md"
             onClick={() => onOpenWindow("hero")}
           >
             <div className="flex gap-0.5">
               <Facehash
                 name="shrek"
-                size={48}
-                intensity3d="dramatic"
-                variant="solid"
+                variant="gradient"
+                className=" rounded-full text-black"
+                colors={[`#b8bb26`]}
+                size={32}
               />
             </div>
           </div>

@@ -11,12 +11,15 @@ import DesktopIcon from "@/components/DesktopIcon";
 import { WindowId, WindowState } from "@/types";
 import { INITIAL_WINDOWS, DESKTOP_ICONS } from "@/constants";
 import { Safari } from "@/components/ui/safari";
-const NOW_BUILDING = {
-  title: "CodePocket",
-  description: "Building a modern code snippet manager for developers",
-  link: "#",
-  progress: 30,
-};
+import {
+  NOW_BUILDING,
+  EDUCATION,
+  TECH_STACK,
+  EXPERIENCE,
+  DEMO,
+  CONTACT,
+  PERSONAL,
+} from "@/global.config";
 
 export default function Home() {
   const [windows, setWindows] = useState<Record<WindowId, WindowState>>(() => {
@@ -96,7 +99,7 @@ export default function Home() {
   const openWindow = useCallback(
     (id: WindowId) => {
       if (id === "signup") {
-        window.open("https://github.com/Shr3kx", "_blank");
+        window.open(PERSONAL.github, "_blank");
         return;
       }
       focusWindow(id);
@@ -162,7 +165,7 @@ export default function Home() {
                 <ArrowUpRight
                   className="w-3 h-3 text-zinc-600"
                   onClick={() => {
-                    window.open("https://codepocket.vercel.app/", "_blank");
+                    window.open(NOW_BUILDING.link, "_blank");
                   }}
                 />
                 <button
@@ -181,7 +184,7 @@ export default function Home() {
               <h4
                 className="text-sm font-bold leading-tight mb-1 transition-colors duration-300 text-zinc-900 hover:text-amber-500 cursor-pointer"
                 onClick={() => {
-                  window.open("https://codepocket.vercel.app/", "_blank");
+                  window.open(NOW_BUILDING.link, "_blank");
                 }}
               >
                 {NOW_BUILDING.title}
@@ -257,26 +260,22 @@ export default function Home() {
               Education
             </h2>
             <div className="space-y-4 sm:space-y-8">
-              <div className="p-4 sm:p-6 border-2 border-black bg-zinc-50 rounded-xl">
-                <h3 className="text-base sm:text-xl font-bold uppercase">
-                  Bennett University
-                </h3>
-                <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
-                  Master of Computer Applications (MCA)
-                </p>
-                <p className="mt-2 font-bold text-zinc-500">2024 – Present</p>
-              </div>
-              <div className="p-4 sm:p-6 border-2 border-black bg-white rounded-xl">
-                <h3 className="text-base sm:text-xl font-bold uppercase">
-                  Bennett University
-                </h3>
-                <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
-                  Bachelor of Computer Applications (BCA)
-                </p>
-                <p className="mt-2 font-bold text-zinc-500">
-                  Sept 2021 – May 2024
-                </p>
-              </div>
+              {EDUCATION.map((edu, i) => (
+                <div
+                  key={i}
+                  className={`p-4 sm:p-6 border-2 border-black rounded-xl ${
+                    i === 0 ? "bg-zinc-50" : "bg-white"
+                  }`}
+                >
+                  <h3 className="text-base sm:text-xl font-bold uppercase">
+                    {edu.institution}
+                  </h3>
+                  <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
+                    {edu.degree}
+                  </p>
+                  <p className="mt-2 font-bold text-zinc-500">{edu.period}</p>
+                </div>
+              ))}
             </div>
           </div>
         </Window>
@@ -293,16 +292,7 @@ export default function Home() {
               Capabilities / Stack
             </h2>
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {[
-                "React.js",
-                "Next.js",
-                "TypeScript",
-                "JavaScript",
-                "Tailwind CSS",
-                "Node.js",
-                "Express.js",
-                "MongoDB",
-              ].map(skill => (
+              {TECH_STACK.map(skill => (
                 <div
                   key={skill}
                   className="p-3 sm:p-4 border-2 border-black bg-white rounded-xl flex items-center gap-2 sm:gap-3 font-black uppercase text-xs sm:text-sm italic shadow-sm hover:bg-yellow-50 transition-colors"
@@ -331,7 +321,7 @@ export default function Home() {
                 <span className="text-xs uppercase text-zinc-400 block mb-1">
                   Email
                 </span>
-                shrey.kuvera@gmail.com
+                {CONTACT.email}
               </div>
             </div>
             <form
@@ -376,40 +366,28 @@ export default function Home() {
             </h2>
 
             <div className="space-y-8 sm:space-y-12">
-              <div className="relative pl-5 sm:pl-8 border-l-4 border-[#f3a033]">
-                <div className="absolute -left-[14px] top-0 w-6 h-6 rounded-full bg-black border-4 border-white" />
-                <h3 className="text-xl sm:text-2xl font-black uppercase italic">
-                  Excellent Softwares
-                </h3>
-                <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
-                  Front-End Developer Intern
-                </p>
-                <p className="text-sm font-black text-zinc-400 uppercase mt-1">
-                  Aug 2023 – Dec 2024
-                </p>
-                <ul className="mt-4 space-y-3 text-zinc-600 font-medium list-disc list-inside">
-                  <li>
-                    Developed secure web applications for healthcare and ERP
-                    clients using React.js and Next.js.
-                  </li>
-                  <li>
-                    Automated KYC and scheduling workflows, cutting manual tasks
-                    by 50%.
-                  </li>
-                  <li>
-                    Built Modular Next.js API dashboards and Vendor Portals with
-                    operational analytics.
-                  </li>
-                  <li>
-                    Implemented AES-CBC encryption for secure sessions and data
-                    privacy.
-                  </li>
-                  <li>
-                    Optimized performance using reusable components and Redux
-                    state management.
-                  </li>
-                </ul>
-              </div>
+              {EXPERIENCE.map((exp, i) => (
+                <div
+                  key={i}
+                  className="relative pl-5 sm:pl-8 border-l-4 border-[#f3a033]"
+                >
+                  <div className="absolute -left-[14px] top-0 w-6 h-6 rounded-full bg-black border-4 border-white" />
+                  <h3 className="text-xl sm:text-2xl font-black uppercase italic">
+                    {exp.company}
+                  </h3>
+                  <p className="font-bold text-[#f3a033] uppercase text-xs tracking-widest">
+                    {exp.role}
+                  </p>
+                  <p className="text-sm font-black text-zinc-400 uppercase mt-1">
+                    {exp.period}
+                  </p>
+                  <ul className="mt-4 space-y-3 text-zinc-600 font-medium list-disc list-inside">
+                    {exp.bullets.map((bullet, j) => (
+                      <li key={j}>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </Window>
@@ -425,7 +403,7 @@ export default function Home() {
             <div className="aspect-video w-full bg-black rounded-lg flex items-center justify-center relative group overflow-hidden border-2 border-black">
               <video
                 ref={videoRef}
-                src="/projectmap-demo.mp4"
+                src={DEMO.videoSrc}
                 className="absolute inset-0 w-full h-full object-cover opacity-50"
                 autoPlay
                 loop
@@ -442,12 +420,12 @@ export default function Home() {
                 </div>
               )}
               <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 font-black text-white uppercase italic text-lg sm:text-2xl drop-shadow-lg">
-                ProjectMap Demo
+                {DEMO.title}
               </div>
             </div>
             <div className="p-3 sm:p-4 bg-zinc-50 border-2 border-black rounded-xl">
               <p className="font-bold text-zinc-900 uppercase italic text-sm sm:text-base">
-                Showcasing: AI-powered roadmap generator and visualization.
+                {DEMO.subtitle}
               </p>
             </div>
           </div>
